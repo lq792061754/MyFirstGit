@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.work.ssm.mapper.DutyMonthDao"> 
+   <select id="getMonthId" parameterType="String" resultType="int">
+      select COALESCE(MAX(id),0) AS id from duty_months where yearMonth = #{yearMonth}
+   </select>
+   <insert id="insertMonth" parameterType="com.work.ssm.pojo.DutyMonth">
+       insert into
+	    duty_months(createTime,updateTime,yearMonth,dayNums)
+	    values(#{createTime},#{updateTime},#{yearMonth},#{dayNums})
+   </insert>
+   <delete id="deleteMonthByName" parameterType="String">
+       delete from duty_months where yearMonth=#{yearMonth}
+   </delete>
+</mapper>

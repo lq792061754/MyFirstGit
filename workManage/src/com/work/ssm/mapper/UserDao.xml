@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.work.ssm.mapper.UserDao">
+	<!-- 获取一个用户对象 -->
+	<select id="getOneUser" parameterType="com.work.ssm.pojo.User"
+		resultType="com.work.ssm.pojo.User">
+		select * from sys_user where loginName=#{loginName} and pwd=#{pwd} and userRole=#{userRole}
+	</select>
+	<!-- 根据id获取对象 -->
+	<select id="getOneUserById" parameterType="com.work.ssm.pojo.User"
+		resultType="com.work.ssm.pojo.User">
+		select * from sys_user where id=#{id}
+	</select>
+	<!-- 获取所有对象 -->
+	<select id="getAllUser" resultType="com.work.ssm.pojo.User">
+		select * from sys_user where userRole = 0
+	</select>
+	
+	<!-- 用于分页，每页显示4条数据 -->
+	<select id="showList" parameterType="int" resultType="com.work.ssm.pojo.User">
+		select * from sys_user where userRole = 0 limit #{index},4
+	</select>
+	<!-- 用于获取总页数 -->
+	<select id="pageCount" resultType="int">
+		select count(*) from sys_user where userRole = 0
+	</select>
+	<!-- 插入分页 -->
+	<insert id="insertUser" parameterType="com.work.ssm.pojo.User">
+	    insert into
+	    sys_user(createTime,updateTime,loginName,pwd,userName,job,tel,userRole)
+	    values(#{createTime},#{updateTime},#{loginName},#{pwd},#{userName},#{job},#{tel},#{userRole})
+    </insert>
+    <!-- 删除用户 -->
+	<delete id="deleteUser" parameterType="int">
+		delete from sys_user where id=#{id}
+	</delete>
+	<!-- 更新用户 -->
+	<update id="updateUser" parameterType="com.work.ssm.pojo.User">
+		update sys_user set updateTime=#{updateTime},
+		loginName=#{loginName},userName=#{userName}
+		,tel=#{tel},job=#{job} where id=#{id}
+	</update>
+	<!-- 条件查询 -->
+	<select id="getUserByNameOrTel" resultType="com.work.ssm.pojo.User" parameterType="com.work.ssm.pojo.User">
+      select * from sys_user
+      <where>
+         <if test="userName!=null">
+            and userName LIKE CONCAT('%',#{userName},'%')
+         </if>
+         <if test="tel != null">
+            and tel LIKE CONCAT('%',#{tel},'%')
+         </if>
+      </where> 
+	</select>
+</mapper>

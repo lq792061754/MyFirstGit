@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.work.ssm.mapper.DutyDao">
+   <select id="getDutyList" parameterType="int" resultType="com.work.ssm.pojo.ResultDuty">
+       SELECT sys_user.userName, sys_user.tel, sys_user.job, duty_lists.dutyDates
+       FROM sys_user inner join duty_lists where sys_user.id = duty_lists.sys_user_id
+       and duty_lists.duty_months_id = #{id} ORDER BY duty_lists.id
+   </select>
+   
+   <select id="getDutyByMonth" resultType="com.work.ssm.pojo.ResultDuty">
+       SELECT sys_user.userName, sys_user.tel, sys_user.job, duty_lists.dutyDates
+       FROM sys_user inner join duty_lists where sys_user.id = duty_lists.sys_user_id
+       and duty_lists.dutyDates LIKE CONCAT('%',#{0},'%')
+       and duty_lists.duty_months_id = #{1} ORDER BY duty_lists.id          
+   </select>
+   
+   <select id="getDutyByName" parameterType="String" resultType="com.work.ssm.pojo.ResultDuty">
+       SELECT sys_user.userName, sys_user.tel, sys_user.job, duty_lists.dutyDates
+       FROM sys_user inner join duty_lists where sys_user.id = duty_lists.sys_user_id
+       and sys_user.userName LIKE CONCAT('%',#{userName},'%')        
+   </select>
+   
+   <select id="getDutyByAll" resultType="com.work.ssm.pojo.ResultDuty">
+       SELECT sys_user.userName, sys_user.tel, sys_user.job, duty_lists.dutyDates
+       FROM sys_user inner join duty_lists where sys_user.id = duty_lists.sys_user_id
+       and duty_lists.dutyDates LIKE CONCAT('%',#{0},'%')
+       and sys_user.userName LIKE CONCAT('%',#{1},'%')
+       and duty_lists.duty_months_id = #{2} ORDER BY duty_lists.id          
+   </select>
+   
+   <delete id="deleteDutyById" parameterType="int">
+       delete from duty_lists where duty_months_id=#{duty_months_id}
+   </delete>
+   <insert id="insertDuty" parameterType="com.work.ssm.pojo.DutyList">
+       insert into
+	    duty_lists(createTime,updateTime,duty_months_id,sys_user_id,dutyDates)
+	    values(#{createTime},#{updateTime},#{duty_months_id},#{sys_user_id},#{dutyDates})
+   </insert>
+</mapper>
