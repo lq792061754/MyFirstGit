@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间，唯一特性 -->
+<mapper namespace="com.lq.job.mapper.ExerciseMapper">
+ <insert id="insertExercise" parameterType="Exercise">
+  INSERT INTO write_exercise (exercise_name, exercise_answer, choice1, choice2, choice3, 
+  choice4, et_id) VALUES(#{exercise_name}, #{exercise_answer},
+  #{choice1}, #{choice2}, #{choice3}, #{choice4}, #{et_id})
+ </insert>
+ <select id="showExercises" parameterType="Integer" resultType="Exercisevo">
+  SELECT write_exercise.exercise_id, write_exercise.exercise_name, write_exercise.exercise_answer,
+  write_exercise.choice1, write_exercise.choice2, write_exercise.choice3, write_exercise.choice4,
+  exercise_topic.et_name FROM write_exercise INNER JOIN exercise_topic ON 
+  write_exercise.et_id=exercise_topic.et_id WHERE exercise_topic.et_id=#{et_id}
+ </select>
+</mapper>

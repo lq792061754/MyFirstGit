@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改密码</title>
+<link rel="stylesheet" type="text/css" href="css/css.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+    function changepwd() {
+      var changeFormObj = document.getElementById("changeForm");
+      var isEmpty = true;
+      var p1Value = document.getElementById("pwd1").value;
+      var p2Value = document.getElementById("pwd2").value;
+      var p3Value = document.getElementById("pwd3").value;
+      var password = [[${session.Admin.password}]];
+      document.getElementById("p1Error").innerHTML="";
+      document.getElementById("p2Error").innerHTML="";
+      document.getElementById("p3Error").innerHTML="";
+      if (!p1Value || password != p1Value) {
+    	  if (!p1Value) {
+    	  document.getElementById("p1Error").innerHTML="原始密码不能为空";
+    	  }else{
+    	  document.getElementById("p1Error").innerHTML="原始密码不正确";
+    	  }
+        isEmpty = false;
+      }
+      if (!p2Value) {
+        document.getElementById("p2Error").innerHTML="新密码不能为空";
+        isEmpty = false;
+      }
+      if (p3Value != p2Value || !p3Value) {
+           if(!p3Value) {
+           document.getElementById("p3Error").innerHTML="确认密码不能为空";
+           }else{
+           document.getElementById("p3Error").innerHTML="两次密码不一致";
+           }
+        isEmpty = false;
+        }
+      if (isEmpty) {
+      changeForm.submit();
+      }
+    }
+</script>
+</head>
+<body>
+	<div id="pageAll">
+		<div class="page ">
+			<!-- 修改密码页面样式 -->
+			<div class="bacen">
+			<form id="changeForm" action="/changePwd" method="post">
+				<div class="bbD">管理员用户名：&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${session.Admin.name}"></span></div>
+				<div class="bbD">
+					&nbsp;&nbsp;&nbsp;&nbsp;输入旧密码：<input type="password" class="input3" id="pwd1" /><label id="p1Error" style="color:#F00;margin-left:150px"></label>
+				</div>
+				<div class="bbD">
+					&nbsp;&nbsp;&nbsp;&nbsp;输入新密码：<input name="newPassword" type="password" class="input3" id="pwd2" /><label id="p2Error" style="color:#F00;margin-left:150px"></label>
+				</div>
+				<div class="bbD">
+					再次确认密码：<input type="password" class="input3" id="pwd3" /><label id="p3Error" style="color:#F00;margin-left:150px"></label>
+				</div>
+				<div class="bbD">
+					<p class="bbDP">
+						<input class="btn_ok btn_yes" type="button" onclick="changepwd()" value="提交"/>
+						<input class="btn_ok btn_no" type="reset" value="重置"/>
+					</p>
+				</div>
+			</form>
+			</div>
+
+			<!-- 修改密码页面样式end -->
+		</div>
+	</div>
+</body>
+</html>

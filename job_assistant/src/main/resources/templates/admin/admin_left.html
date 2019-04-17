@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+<HEAD>
+<TITLE>导航栏</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<STYLE type=text/css>
+BODY {
+	font:12px Arial, Helvetica, sans-serif;
+	color: #000;
+	background-color: #EEF2FB;
+	margin: 0px;
+}
+BODY {
+	FONT-SIZE: 11px;
+	COLOR: #003366;
+	FONT-FAMILY: Verdana
+}
+a{
+color:black;
+}
+TD {
+	FONT-SIZE: 15px;
+	COLOR: #003366;
+	FONT-FAMILY: Verdana
+}
+
+DIV {
+	FONT-SIZE: 11px;
+	COLOR: #003366;
+	FONT-FAMILY: Verdana
+}
+
+A.style2:link {
+	PADDING-LEFT: 4px;
+	COLOR: #0055bb;
+	TEXT-DECORATION: none
+}
+
+A.style2:visited {
+	PADDING-LEFT: 4px;
+	COLOR: #0055bb;
+	TEXT-DECORATION: none
+}
+
+A.style2:hover {
+	PADDING-LEFT: 4px;
+	COLOR: #ff0000;
+	TEXT-DECORATION: none
+}
+
+A.active {
+	PADDING-LEFT: 4px;
+	COLOR: #ff0000;
+	TEXT-DECORATION: none
+}
+
+.span {
+	COLOR: #ff0000;
+}
+.two_bar {
+	margin-left:0px;
+	display:none;
+}
+li {
+	list-style:none;
+}
+.two_bar li,.one_bar {
+	display:block;
+	text-align:center;
+	font-size:14px;
+	background-color:#9999ff;
+	color:#ffffff;
+	border-bottom:1px solid #ffffff;
+	border-radius:10px;
+	line-height:38px;
+	overflow:hidden;
+	height:38px;
+	width:120px;
+}
+a:link,a:visited,a:hover,a:active {
+	text-decoration:none;
+}
+</STYLE>
+<link rel="stylesheet" type="text/css" href="/js/jquery.min.js">
+<SCRIPT type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $(".one_bar").click(function(){
+	          $(this).next().slideToggle();
+	          $(this).parent().siblings().children("ul").slideUp();
+	    });
+	});
+</SCRIPT>
+<META content="MSHTML 6.00.2900.3492" name=GENERATOR>
+</HEAD>
+<BODY>
+	<FORM id=form1 name=form1 action=YHMenu.aspx method=post>
+			<TABLE cellSpacing=0 cellPadding=0 width=200 align=center border=0>
+			<TBODY>
+				<TR>
+					<TD align="center" width=180 height=35><B>就业指导 －功能菜单</B></TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+	<div class="top_bar">
+    <ul>
+        <li>
+            <a class="one_bar" target=main href="/home">首页</a>
+        </li>
+        <li>
+            <a class="one_bar" target=main href="/changePwdIndex">修改密码</a>
+        </li> 
+        <li>
+            <a class="one_bar" target=main href="index.jsp">用户管理</a>
+        </li>
+        <li>
+            <a class="one_bar" href="#">试题管理</a>
+            <ul class="two_bar">
+                <li><a href="/uploadIndex" target=main>-添加试题</a></li>
+                <li><a href="/showExeIndex" target=main>-编辑试题</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="one_bar" href="#">面试管理</a>
+            <ul class="two_bar">
+                <li><a href="#" target=main>-添加面试技巧</a></li>
+                <li><a href="#" target=main>-编辑面试技巧</a></li>
+            </ul>
+        </li> 
+        <li>
+            <a class="one_bar" href="#">企业管理</a>
+            <ul class="two_bar">
+                <li><a href="#" target=main>-添加企业</a></li>
+                <li><a href="#" target=main>-编辑企业</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="one_bar" href="#">论坛管理</a>
+            <ul class="two_bar">
+                <li><a href="#" target=main>-最新发布</a></li>
+                <li><a href="#" target=main>-最新回复</a></li>
+            </ul>
+        </li> 
+        <li>
+            <a class="one_bar" target=main href="/changePwdIndex">页面管理</a>
+        </li>
+    </ul>
+</div>
+	<TABLE cellSpacing=0 cellPadding=0 width=210 align=center border=0>
+	<TBODY>
+		<TR>
+		</TR>
+	</TBODY>
+	</TABLE>
+	</FORM>
+</BODY>
+</HTML>

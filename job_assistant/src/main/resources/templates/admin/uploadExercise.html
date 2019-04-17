@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+<title>添加试题</title>
+<link rel="stylesheet" type="text/css" href="css/css.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+    //验证用户名和密码是否为空
+    function upload() {
+    var uploadFormObj = document.getElementById("exerciseForm");
+    var isEmpty = true;
+        if(!(document.getElementById("et_name").value)) {
+            alert("试题名不能为空！");
+            isEmpty = false;
+        }
+        if(isEmpty) {
+        	uploadFormObj.submit();
+        }
+    }
+</script>
+</head>
+<body>
+    <div id="pageAll">
+        <div class="page ">
+            <!-- 会员注册页面样式 -->
+            <div class="banneradd bor">
+                <div class="baTopNo">
+                    <span>试题添加</span>
+                </div>
+                <div class="baBody">
+                   <form id="exerciseForm" action="uploadExercise" method="post" enctype="multipart/form-data">
+                    <div class="bbD">
+                        &nbsp;&nbsp;&nbsp;试题名称：<input id="et_name" type="text" class="input3" name="et_name"/>
+                    </div>
+                    <div class="bbD">
+                        &nbsp;&nbsp;&nbsp;试题年份：<input id="et_time" type="date" class="input3" name="et_time"/>
+                    </div>
+                    <div class="bbD">
+                        &nbsp;&nbsp;&nbsp;试题来源：<input id="et_from" type="text" class="input3" name="et_from"/>
+                    </div>
+                    <div class="bbD">
+                        &nbsp;&nbsp;&nbsp;试题种类：<input id="et_kind" type="text" class="input3" name="et_kind"/>
+                    </div>
+                    <div class="bbD">
+                        &nbsp;&nbsp;&nbsp;试题上传：&nbsp;&nbsp;&nbsp;<input type="file" name="filename" />
+                    </div>
+                    <div class="bbD">
+                        <p class="bbDP">
+                            <input type="button" class="btn_ok btn_yes" onclick="upload()" value="提交">
+                            <input type="reset" class="btn_ok btn_no" value="重置">
+                        </p>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 添加试题页面样式end -->
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
